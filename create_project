@@ -1,0 +1,28 @@
+#Usage: ./create_project.sh project_name fqbn:fqbn:fqbn /dev/serial_port
+
+#!/usr/bin/env bash
+if [ $# != 3 ]; then
+	echo "Invalid usage. try again"
+	echo "Usage: ./create_project.sh project_name fqbn:fqbn:fqbn /dev/serial_port"
+	exit
+fi
+
+project_name=$1
+fqbn=$2
+serial_port=$3
+
+path=./projects/$project_name
+
+mkdir $path 
+
+touch $path/$project_name.ino
+echo $'void setup() {\n\n}\nvoid loop() {\n\n}' >> $path/$project_name.ino
+
+touch $path/upload.sh
+echo "#!/usr/bin/env bash" >> $path/upload
+echo "arduino-cli compile --fqbn $fqbn" >> $path/upload
+echo "arduino-cli upload --fqbn $fqbn -p $serial_port" >> $path/upload
+echo "arduino-cli monitor -p $serial_port" >> $path/upload
+sudo chmod +x $path/upload
+
+echo "Created project $project_name in $path. Run $path/upload to upload your code."
