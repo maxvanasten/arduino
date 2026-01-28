@@ -18,7 +18,7 @@ mkdir $path
 touch $path/$project_name.ino
 echo $'void setup() {\n\n}\nvoid loop() {\n\n}' >> $path/$project_name.ino
 
-touch $path/upload.sh
+touch $path/upload
 echo "#!/usr/bin/env bash" >> $path/upload
 echo "arduino-cli compile --fqbn $fqbn" >> $path/upload
 echo "arduino-cli upload --fqbn $fqbn -p $serial_port" >> $path/upload
