@@ -1,6 +1,5 @@
-#Usage: ./create_project.sh project_name fqbn:fqbn:fqbn /dev/serial_port
-
 #!/usr/bin/env bash
+#Usage: ./create_project.sh project_name fqbn:fqbn:fqbn /dev/serial_port
 if [ $# != 3 ]; then
 	echo "Invalid usage. try again"
 	echo "Usage: ./create_project.sh project_name fqbn:fqbn:fqbn /dev/serial_port"
