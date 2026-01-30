@@ -11,9 +11,6 @@ void setup() {
 void loop() {
   if(accel.available()) {
     String s = accel.readStringUntil('\n');
-    // x=203,y=20.3,z=33.2
-    
-
     Serial.println("SC7A20H: " + s);
   }
 }
